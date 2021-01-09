@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 import os
 import sys
+import math
 import json
 from pprint import pprint
+from utils import SuggestionsMixin
 
 
-class CoffeeMachine:
+class CoffeeMachine(SuggestionsMixin):
     """ """
 
     def __init__(self, persist=False):
@@ -89,6 +91,8 @@ class CoffeeMachine:
             elif request in self.offerings:
                 result = self.handle_request(request)
                 print(result)
+            else:
+                print(f"Unrecognized request, do you mean {self._parse(request)}?\n")
 
     def reset(self):
         """ """
